@@ -1,0 +1,30 @@
+---
+title: "The Great British Bake Off"
+output: html_document
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(here)
+```
+
+```{r}
+# Get details of the working directory
+
+getwd()
+```
+
+```{r}
+# The package here::here() gives the project location
+
+here::here()
+```
+
+
+![Fuzzy RStudio creatures sat watching a television with cakes](bakers_1.png)
+
+![Fuzzy RStudio creatures ready with baking apparatus and the lead one with a picture of a cupcake](img/bakers_2.png)
+
+![3 fuzzy RStudio creatures stood on top of each other, the top pouring in flour, the second stirring a bowl, the bottom looking a bit squashed](../images/bakers_3.png)
+
+

@@ -1,0 +1,26 @@
+---
+title: "The Great British Bake Off"
+output: html_document
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(here)
+```
+
+```{r}
+# Get details of the working directory
+
+getwd()
+```
+
+```{r}
+# The package here::here() gives the project location
+
+here::here()
+```
+
+### Markdown image link text as a hint
+
+![]()
+

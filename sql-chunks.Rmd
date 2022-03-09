@@ -1,0 +1,87 @@
+---
+title: "SQL RMarkdown"
+author: "Zoë Turner"
+date: "28/01/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+
+library(odbc) # necessary for connecting to SQL server
+
+```
+
+# Setting up multiple server connections
+
+The code chunk is R and uses the {odbc} drivers. The default connection as "con" is set
+along with the global chunk settings (in this case evaluation is off as there is no SQL connection).
+
+```{r database-connections}
+con <- dbConnect(odbc(),
+                 Driver = "SQL Server",
+                 Server = "<ServerName>",
+                 Database = "<DatabaseName>",
+                 Trusted_Connection = "True") # uses windows authentication so password not required
+
+con_server2 <- dbConnect(odbc(),
+                 Driver = "SQL Server",
+                 Server = "<ServerName>",
+                 Database = "<DatabaseName>",
+                 Trusted_Connection = "True")
+
+con_server3 <- dbConnect(odbc(),
+                 Driver = "SQL Server",
+                 Server = "<ServerName>",
+                 Database = "<DatabaseName>",
+                 Trusted_Connection = "True")
+
+# This sets the default connection to "con"
+knitr::opts_chunk$set(connection = "con",
+                      eval = FALSE,
+                      echo = TRUE)
+```
+
+## Naming tables
+
+Tables as they are brought into R are named in the chunk `output.var=""`
+
+## con_server2
+
+```{sql connection="con_server2", output.var="server2_dates"}
+
+SELECT Top 100 *
+FROM DIM.Date
+
+```
+
+## con_server3
+
+```{sql connection="con_server3", output.var="server3_dates"}
+
+SELECT Top 100 *
+FROM DIM.Date
+
+```
+
+
+## Default connection
+
+No connection is needed as this is detailed in the setup chunk
+     
+```{sql, output.var="default_dates" }
+
+SELECT Top 100 *
+FROM DIM.Date
+
+```
+
+Would be the same as 
+
+```{sql connection="con", output.var="default_dates" }
+
+SELECT Top 100 *
+FROM DIM.Date
+
+```
